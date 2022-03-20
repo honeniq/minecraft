@@ -34,7 +34,7 @@ sudo mkdir -p $MC_ROOT
 
 script_dir=$(cd $(dirname -- $0); pwd)
 
-python ${script_dir}/../setup/operator.py $MC_ROOT .
+python3 ${script_dir}/../setup/operator-mc.py $MC_ROOT .
 
 if [ $? -ne 0 ]; then
     echo "Minecraftサーバーの起動を中止しました。"

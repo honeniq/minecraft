@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # coding: UTF-8
-# python2.x
+# python3.x
 
 import sys
 import os
@@ -48,7 +48,7 @@ def main(args):
         json_contents = decode_json(open(ops_path, 'r'))
 
         if json_contents is not None:
-            current_ops = map(lambda v: v.get('name'), json_contents)
+            current_ops = list(map(lambda v: v.get('name'), json_contents))
         else:
             return
 
@@ -104,10 +104,10 @@ def cmd_operator(operators):
         for op in enumerate(operators):
             print(str(op[0] + 1) + '. ' + op[1])
 
-        cmd = raw_input('操作を選択してください。(a:追加, d:削除, y:決定 , c:キャンセル):').strip()
+        cmd = input('操作を選択してください。(a:追加, d:削除, y:決定 , c:キャンセル):').strip()
 
         if cmd == 'a':
-            new_op = raw_input('追加するユーザーIDを入力してください。:').strip()
+            new_op = input('追加するユーザーIDを入力してください。:').strip()
 
             if new_op:
                 if new_op in operators:
@@ -116,10 +116,10 @@ def cmd_operator(operators):
                     operators.append(new_op)
 
         elif cmd == 'd':
-            raw_input_no = raw_input('削除するユーザーの番号を入力してください。:').strip()
+            input_no = input('削除するユーザーの番号を入力してください。:').strip()
 
-            if raw_input_no and unicode(raw_input_no).isdecimal():
-                del_no = int(raw_input_no)
+            if input_no and unicode(input_no).isdecimal():
+                del_no = int(input_no)
                 if del_no > 0 and del_no <= len(operators):
     	            operators.pop(del_no - 1)
                 else:
@@ -165,7 +165,7 @@ if __name__ == '__main__':
     try:
         main(sys.argv)
 
-    except KeyboardInterrupt:
+    except KeyboardInterrupt as err:
         logging.info('Interrupt ctrl-c')
         sys.exit(1)
 
