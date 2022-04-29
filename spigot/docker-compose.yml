@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  minecraft-spigot-server:
+    image: itzg/minecraft-server
+    container_name: minecraft-spigot
+    env_file:
+      - ./mc.env
+    environment:
+      # eula(ソフトウェア使用許諾契約)に同意します。
+      EULA: "TRUE"
+      VERSION: "LATEST"
+      TYPE: "SPIGOT"
+    volumes:
+      - /var/mc_spigot_data:/data
+    ports:
+      - 80:25565
+

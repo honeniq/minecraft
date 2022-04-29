@@ -45,14 +45,14 @@ Last login: Sat Apr  4 07:50:39 2020 from 123.1.58.13
 ubuntu@ubuntu:~$
 ```
 
-以下のコマンドを実行します。実行する場所は任意ですが、よくわからなければログインした場所 (`home`ディレクトリ) 大丈夫です。
+以下のコマンドを実行します。実行する場所は任意ですが、よくわからなければログインした場所 (`home`ディレクトリ) で大丈夫です。
 
 ```sh
 ubuntu@ubuntu:~$ git clone https://github.com/coderdojo-mishima-numazu/minecraft.git
 
 ```
 
-そうすると `minecraft` というディレクトリができます。その中の `officail` ディレクトリに移動します。
+そうすると `minecraft` というディレクトリができます。その中の `official` ディレクトリに移動します。
 
 ```sh
 ubuntu@ubuntu:~$ cd minecraft/official
@@ -61,6 +61,10 @@ ubuntu@ubuntu:~$ cd minecraft/official
 `official_build.sh` というシェルスクリプトを実行します。するとマイクラサーバーのインストールと起動が行われます。デフォルトでは公式の最新バージョンです。<br>
 数分待つと、途中で管理者ユーザーの設定を求められます。最低１ユーザー入力してください。<br>
 最後に **『Creating minecraft ... done』** と表示されれば成功です。
+
+| :information_source: Spigot Server                                                                    |
+| :---------------------------------------------------------------------------------------------------- |
+| Spigotサーバーを構築する場合は `spigot` ディレクトリに移動し、 `spigot_build.sh` を実行してください。 |
 
 ```sh
 ubuntu@ubuntu:~$ ./official_build.sh
