@@ -2,7 +2,7 @@ version: '3'
 
 services:
   minecraft-server:
-    image: itzg/minecraft-server
+    image: itzg/minecraft-server:latest
     container_name: minecraft
     # サーバー、Dockerデーモンの再起動でマイクラサーバーも起動します。
     restart: always
