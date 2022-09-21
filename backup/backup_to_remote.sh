@@ -2,13 +2,17 @@
 
 . config
 
+facility=${SYSLOG_FACILITY:-syslog}
+
+logger -p ${facility}.notice -t $0 "[$$] minecraft backup start."
+
 if [[ ! -d $BACKUP_ROOT_PATH ]]; then
-  echo backup path dose not exist.
+  logger -p ${facility}.err -t $0 "[$$] backup path dose not exist."
   exit 1
 fi
 
 if [[ -z $RCLONE_DEST_PATH ]];then
-  echo rclone_dest_path is required.
+  logger -p ${facility}.err -t $0 "[$$] rclone_dest_path is required."
   exit 1
 fi
 
@@ -34,9 +38,15 @@ done
 
 tar czf ${temp_dir}.tar.gz ${temp_dir}
 
-rclone copy -P --log-file ${LOG_PATH}/rclone.log ${temp_dir}.tar.gz ${RCLONE_DEST_PATH}
-end_code=$?
+rclone copy -P ${temp_dir}.tar.gz ${RCLONE_DEST_PATH} 2>&1 | logger -p ${facility}.notice -t $0
+end_code=${PIPESTATUS[0]}
 
 rm ${temp_dir}.tar.gz
 rm -r ${temp_dir}
 
+if [[ ${end_code} != "0" ]]; then
+  logger -p ${facility}.notice -t $0 "[$$] minecraft backup failed.endcode: ${end_code}"
+  exit ${end_code}
+fi
+
+logger -p ${facility}.notice -t $0 "[$$] minecraft backup success."
