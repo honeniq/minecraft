@@ -5,3 +5,4 @@ LOG_PATH=${BASEDIR}/logs
 # remote_name:save_path
 RCLONE_DEST_PATH=gdrive:Public/CoderDojo末広町/MineCraftBackupData
 SYSLOG_FACILITY=user
+SAVE_DAYS=90
