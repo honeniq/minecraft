@@ -1,7 +1,4 @@
-BASEDIR=$(cd $(dirname -- $0) && pwd)
-
 BACKUP_ROOT_PATH=/var/mc_official_data
-LOG_PATH=${BASEDIR}/logs
 # remote_name:save_path
 RCLONE_DEST_PATH=gdrive:Public/CoderDojo末広町/MineCraftBackupData
 SYSLOG_FACILITY=user

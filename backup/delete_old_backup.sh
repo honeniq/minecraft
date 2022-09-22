@@ -1,6 +1,7 @@
 #!/bin/bash
 
-. config
+BASEDIR=$(cd $(dirname -- $0) && pwd)
+. ${BASEDIR}/config
 
 facility=${SYSLOG_FACILITY:-syslog}
 

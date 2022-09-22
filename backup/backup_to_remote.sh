@@ -1,6 +1,8 @@
 #!/bin/bash
 
-. config
+BASEDIR=$(cd $(dirname -- $0) && pwd)
+
+. ${BASEDIR}/config
 
 facility=${SYSLOG_FACILITY:-syslog}
 
@@ -16,10 +18,6 @@ if [[ -z $RCLONE_DEST_PATH ]];then
   exit 1
 fi
 
-if [[ ! -d $LOG_PATH ]]; then
-  mkdir -p $LOG_PATH
-fi
-
 paths=(${BACKUP_ROOT_PATH//\// })
 let i=${#paths[@]}-1
 key=${paths[i]}
@@ -28,7 +26,7 @@ key=${paths[i]}
 temp_dir=${key}_$(date "+%Y%m%d%H%M%S")
 mkdir -p ${temp_dir}
 
-for f in $(cat backup_list);do
+for f in $(cat ${BASEDIR}/backup_list);do
   source_file=${BACKUP_ROOT_PATH}/${f}
   if [[ -d $source_file ]];then
     cp_arg="-r "
