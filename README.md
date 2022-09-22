@@ -147,3 +147,27 @@ ubuntu@ubuntu:~$ cd ~/minecraft/official;docker-compose down --rmi all
 
 ![whitelist1](https://user-images.githubusercontent.com/62791055/80309767-ee2d7700-8811-11ea-8312-9a5d595e9158.png)
 ![whitelist2](https://user-images.githubusercontent.com/62791055/80310236-9b08f380-8814-11ea-8be1-827f8ce29c82.png)
+
+# データのバックアップ
+クラウドにデータをアップロードするプログラムとクラウドの古いデータを削除するプログラムがあります。cronなどで自動起動させておくと定期的にバックアップすることができます。
+
+## 起動条件
+- rcloneがインストールされており、クラウドストレージに接続されていること。
+- syslogデーモンが起動していること。
+
+* rcloneのインストールと設定については[Ubuntu 20.04にrcloneをインストールする](https://serverarekore.blogspot.com/2021/02/ubuntu-2004rclone.html)などを参照。ブラウザで認証する必要がありCUIではできないので、別のWindowsマシンなどで認証する必要があります。[Configuring rclone on a remote / headless machine](https://rclone.org/remote_setup/)
+
+## backup/backup_to_remote.sh
+クラウドストレージにバックアップするシェルスクリプトです。
+## backup/delete_old_backup.sh
+古くなったバックアップデータを削除します。
+## backup/backup_list
+バックアップ対象のファイルリストです。
+## backup/config
+設定ファイルです。
+|設定値|説明|
+|-|-|
+|BACKUP_ROOT_PATH|バックアップしたいマインクラフトのパス<br>/var/mc_official_data|
+|RCLONE_DEST_PATH|[rcloneで作成したremote_drive_name]:バックアップ先ディレクトリパス<br>remote_drive:Public/sample/MineCraftBackupData|
+|SYSLOG_FACILITY|syslogのファシリティー。特にわからなければブランク。|
+|SAVE_DAYS|バックアップデータの保管期間（単位：日）|
