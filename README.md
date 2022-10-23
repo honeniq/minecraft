@@ -48,7 +48,7 @@ ubuntu@ubuntu:~$
 以下のコマンドを実行します。実行する場所は任意ですが、よくわからなければログインした場所 (`home`ディレクトリ) で大丈夫です。
 
 ```sh
-ubuntu@ubuntu:~$ git clone https://github.com/coderdojo-mishima-numazu/minecraft.git
+ubuntu@ubuntu:~$ git clone https://github.com/urushibata/minecraft.git
 
 ```
 
