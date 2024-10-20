@@ -15,5 +15,5 @@ services:
     volumes:
       - /var/mc_bedrock_data:/data
     ports:
-      - 80:25565
+      - 80:19132
 
