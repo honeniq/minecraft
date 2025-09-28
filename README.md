@@ -171,3 +171,23 @@ ubuntu@ubuntu:~$ cd ~/minecraft/official;docker-compose down --rmi all
 |RCLONE_DEST_PATH|[rcloneで作成したremote_drive_name]:バックアップ先ディレクトリパス<br>remote_drive:Public/sample/MineCraftBackupData|
 |SYSLOG_FACILITY|syslogのファシリティー。特にわからなければブランク。|
 |SAVE_DAYS|バックアップデータの保管期間（単位：日）|
+
+# 統合版（Bedrock版）
+
+統合版のサーバーを立ち上げる場合は、`/bedrock` の下で `docker-compose` を実行してください。
+その他の使い方は同じです。
+
+# トラブルシューティング
+
+## アプリとサーバーのバージョン不一致
+
+2025年8月に、アプリよりもサーバーのバージョンが先行してしまったことにより、サーバー接続時にエラーが出てしまう事象が起きました。
+`docker-compose.yml` で指定するバージョンが `latest` だと、その時点での最新版を取ってきてしまうため、アプリが接続できるバージョンを指定することで回避できます。
+
+```
+    environment:
+      # eula(ソフトウェア使用許諾契約)に同意します。
+      EULA: "TRUE"
+      VERSION: 1.21.101.1  # 特定のバージョンを直接指定
+      VERSION: "latest"    # 最新版を取得
+```
